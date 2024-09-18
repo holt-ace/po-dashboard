@@ -5,16 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PO Status Dashboard</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Futura:wght@400;500;700&display=swap');
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Futura', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #F4F4F9;
+            color: #686058; /* Pepper color */
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #A2D45E; /* RTE Green */
         }
         .logo {
-            width: 150px;
-            margin: 20px auto;
+            width: 400px;
             display: block;
+            margin: 10px auto;
         }
         .container {
             max-width: 1200px;
@@ -27,12 +41,20 @@
         .section {
             flex: 1;
             margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
         .section-title {
             text-align: center;
             font-size: 24px;
-            margin: 20px 0;
+            margin: 0;
             font-weight: bold;
+            background-color: #F4F4F9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         .section-content {
             display: flex;
@@ -55,7 +77,7 @@
         }
         .po-header {
             padding: 15px;
-            background-color: #333;
+            background-color: #686058; /* Pepper */
             color: #fff;
             text-align: center;
             font-weight: bold;
@@ -71,13 +93,13 @@
             border-radius: 0 0 10px 10px;
         }
         .CONFIRMED {
-            background-color: #f0ad4e;
+            background-color: #FFA400; /* Tangerine */
         }
         .DELIVERED {
-            background-color: #5cb85c;
+            background-color: #45A041; /* Grass Green */
         }
         .TRANSIT {
-            background-color: #0275d8;
+            background-color: #009ADE; /* Blue Bird */
         }
         .label {
             font-weight: bold;
@@ -86,7 +108,10 @@
 </head>
 <body>
 
-    <img src="rte-logo1.png" alt="RTE Cuisine Logo" class="logo">
+    <header>
+        <img src="rte-logo1.png" alt="RTE Cuisine Logo" class="logo">
+        <h1>Purchase Order Status Dashboard</h1>
+    </header>
 
     <div class="container">
         <div class="section" id="confirmed-section">
@@ -105,14 +130,70 @@
 
     <script>
         const poData = [
-            {"Purchase Order": "PO-10243890", "Customer": "Sysco Riverside, INC", "Buyer": "GEOFFREY POTTER", "Order Date": "2024-09-13", "Delivery Date": "2024-09-26", "Status": "CONFIRMED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"},
-            {"Purchase Order": "PO-29587710", "Customer": "Sysco Chicago, INC", "Buyer": "AARON REICHOW", "Order Date": "2024-08-29", "Delivery Date": "2024-09-09", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"},
-            {"Purchase Order": "PO-59406120", "Customer": "Sysco Nashville, LLC", "Buyer": "CRYSTAL FERGUSON", "Order Date": "2024-08-30", "Delivery Date": "2024-09-10", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"},
-            {"Purchase Order": "PO-38215570", "Customer": "Sysco North Texas, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-03", "Delivery Date": "2024-09-17", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"},
-            {"Purchase Order": "PO-28069770", "Customer": "Sysco Food Services of Denver", "Buyer": "CELINA DOWLING", "Order Date": "2024-09-03", "Delivery Date": "2024-09-16", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"},
-            {"Purchase Order": "PO-27378750", "Customer": "Sysco Central Texas", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"},
-            {"Purchase Order": "PO-27286940", "Customer": "Sysco Houston, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "TRANSIT", "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27286940.pdf"}
-        ];
+    {
+        "Purchase Order": "PO-10243890",
+        "Customer": "Sysco Riverside, INC",
+        "Buyer": "GEOFFREY POTTER",
+        "Order Date": "2024-09-13",
+        "Delivery Date": "2024-09-26",
+        "Status": "CONFIRMED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"
+    },
+    {
+        "Purchase Order": "PO-29587710",
+        "Customer": "Sysco Chicago, INC",
+        "Buyer": "AARON REICHOW",
+        "Order Date": "2024-08-29",
+        "Delivery Date": "2024-09-09",
+        "Status": "DELIVERED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
+    },
+    {
+        "Purchase Order": "PO-59406120",
+        "Customer": "Sysco Nashville, LLC",
+        "Buyer": "CRYSTAL FERGUSON",
+        "Order Date": "2024-08-30",
+        "Delivery Date": "2024-09-10",
+        "Status": "DELIVERED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
+    },
+    {
+        "Purchase Order": "PO-38215570",
+        "Customer": "Sysco North Texas, INC",
+        "Buyer": "NICHOLE BONIN",
+        "Order Date": "2024-09-03",
+        "Delivery Date": "2024-09-17",
+        "Status": "DELIVERED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
+    },
+    {
+        "Purchase Order": "PO-28069770",
+        "Customer": "Sysco Food Services of Denver",
+        "Buyer": "CELINA DOWLING",
+        "Order Date": "2024-09-03",
+        "Delivery Date": "2024-09-16",
+        "Status": "DELIVERED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
+    },
+    {
+        "Purchase Order": "PO-27378750",
+        "Customer": "Sysco Central Texas",
+        "Buyer": "NICHOLE BONIN",
+        "Order Date": "2024-09-10",
+        "Delivery Date": "2024-09-17",
+        "Status": "DELIVERED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"
+    },
+    {
+        "Purchase Order": "PO-27286940",
+        "Customer": "Sysco Houston, INC",
+        "Buyer": "NICHOLE BONIN",
+        "Order Date": "2024-09-10",
+        "Delivery Date": "2024-09-17",
+        "Status": "TRANSIT",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27286940.pdf"
+    }
+];
 
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');

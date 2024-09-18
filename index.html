@@ -102,21 +102,29 @@
     </div>
 
     <script>
-        const poData = [{"Purchase Order": "PO-10243890", "Customer": "Sysco Riverside, INC", "Buyer": "GEOFFREY POTTER", "Order Date": "2024-09-13", "Delivery Date": "2024-09-26", "Status": "CONFIRMED"}, {"Purchase Order": "PO-29587710", "Customer": "Sysco Chicago, INC", "Buyer": "AARON REICHOW", "Order Date": "2024-08-29", "Delivery Date": "2024-09-09", "Status": "DELIVERED"}, {"Purchase Order": "PO-59406120", "Customer": "Sysco Nashville, LLC", "Buyer": "CRYSTAL FERGUSON", "Order Date": "2024-08-30", "Delivery Date": "2024-09-10", "Status": "DELIVERED"}, {"Purchase Order": "PO-38215570", "Customer": "Sysco North Texas, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-03", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-28069770", "Customer": "Sysco Food Services of Denver", "Buyer": "CELINA DOWLING", "Order Date": "2024-09-03", "Delivery Date": "2024-09-16", "Status": "DELIVERED"}, {"Purchase Order": "PO-27378750", "Customer": "Sysco Central Texas", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-27286940", "Customer": "Sysco Houston, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "TRANSIT"}];
+        const poData = [
+            {"Purchase Order": "PO-10243890", "Customer": "Sysco Riverside, INC", "Buyer": "GEOFFREY POTTER", "Order Date": "2024-09-13", "Delivery Date": "2024-09-26", "Status": "CONFIRMED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO10243890_Confirmation.pdf"},
+            {"Purchase Order": "PO-29587710", "Customer": "Sysco Chicago, INC", "Buyer": "AARON REICHOW", "Order Date": "2024-08-29", "Delivery Date": "2024-09-09", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO29587710_Confirmation.pdf"},
+            {"Purchase Order": "PO-59406120", "Customer": "Sysco Nashville, LLC", "Buyer": "CRYSTAL FERGUSON", "Order Date": "2024-08-30", "Delivery Date": "2024-09-10", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO59406120_Confirmation.pdf"},
+            {"Purchase Order": "PO-38215570", "Customer": "Sysco North Texas, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-03", "Delivery Date": "2024-09-17", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO38215570_Confirmation.pdf"},
+            {"Purchase Order": "PO-28069770", "Customer": "Sysco Food Services of Denver", "Buyer": "CELINA DOWLING", "Order Date": "2024-09-03", "Delivery Date": "2024-09-16", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO28069770_Confirmation.pdf"},
+            {"Purchase Order": "PO-27378750", "Customer": "Sysco Central Texas", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "DELIVERED", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO27378750_Confirmation.pdf"},
+            {"Purchase Order": "PO-27286940", "Customer": "Sysco Houston, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "TRANSIT", "pdf": "https://github.com/holt-ace/po-dashboard/raw/main/Sysco_PO_Confirmation/PO27286940_Confirmation.pdf"}
+        ];
 
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');
         const deliveredContent = document.getElementById('delivered-content');
-
+    
         poData.forEach(po => {
             const poCard = document.createElement('div');
             poCard.className = 'po-card';
-            poCard.onclick = () => window.open(po.pdf, '_blank');
-
+            poCard.onclick = () => window.open(po.pdf, '_blank'); // Opens the PDF in a new tab
+    
             const poHeader = document.createElement('div');
             poHeader.className = 'po-header';
             poHeader.innerText = po["Purchase Order"];
-
+    
             const poDetails = document.createElement('div');
             poDetails.className = 'po-details';
             poDetails.innerHTML = `
@@ -125,15 +133,15 @@
                 <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
                 <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
             `;
-
+    
             const poStatus = document.createElement('div');
             poStatus.className = `po-status ${po["Status"]}`;
             poStatus.innerText = po["Status"];
-
+    
             poCard.appendChild(poHeader);
             poCard.appendChild(poDetails);
             poCard.appendChild(poStatus);
-
+    
             if (po["Status"] === 'CONFIRMED') {
                 confirmedContent.appendChild(poCard);
             } else if (po["Status"] === 'TRANSIT') {

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Operations Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            width: 150px;
+            margin: 20px auto;
+            display: block;
+        }
+        .dashboard {
+            max-width: 1200px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .overview {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .metric-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+            text-align: center;
+        }
+        .filters {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        .status-sections {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .section {
+            flex: 1;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .expandable-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .section-header {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+        .section-content {
+            padding: 20px;
+            display: none; /* Hidden by default */
+        }
+        .section-content.active {
+            display: block; /* Show when active */
+        }
+        .status-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .status-indicator {
+            height: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            height: 100%;
+        }
+        .green { background-color: #5cb85c; }
+        .yellow { background-color: #f0ad4e; }
+        .red { background-color: #d9534f; }
+    </style>
+</head>
+<body>
+
+    <img src="/Users/ace/Library/Mobile Documents/com~apple~CloudDocs/RTE CUISINE/BRAND/rte-logo1.png" alt="RTE Cuisine Logo" class="logo">
+
+    <div class="dashboard">
+        <!-- Filters -->
+        <div class="filters">
+            <label for="date-filter">Date Range:</label>
+            <input type="date" id="date-filter">
+            <button>Apply</button>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="overview">
+            <div class="metric-card">Total Orders: 100</div>
+            <div class="metric-card">Sales Revenue: $50,000</div>
+            <div class="metric-card">Pending Actions: 5</div>
+        </div>
+
+        <!-- Status Sections -->
+        <div class="status-sections">
+            <div class="section" id="confirmed-section">
+                <div class="section-title">Confirmed</div>
+                <div class="section-content" id="confirmed-content"></div>
+            </div>
+            <div class="section" id="transit-section">
+                <div class="section-title">In Transit</div>
+                <div class="section-content" id="transit-content"></div>
+            </div>
+            <div class="section" id="delivered-section">
+                <div class="section-title">Delivered</div>
+                <div class="section-content" id="delivered-content"></div>
+            </div>
+        </div>
+
+        <!-- Expandable Sections -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleContent(this)">Orders by Status</div>
+            <div class="section-content">
+                <!-- Orders by status content goes here -->
+            </div>
+        </div>
+
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleContent(this)">Sales Trends</div>
+            <div class="section-content">
+                <!-- Sales trends content goes here -->
+            </div>
+        </div>
+
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleContent(this)">Team Performance</div>
+            <div class="section-content">
+                <!-- Team performance content goes here -->
+            </div>
+        </div>
+
+        <!-- Color-Coded Status Indicators -->
+        <div class="status-card">
+            <h2>Total Orders</h2>
+            <div class="status-indicator">
+                <div class="progress-bar green" style="width: 70%;"></div>
+            </div>
+            <p>70% of orders are delivered on time</p>
+        </div>
+
+        <div class="status-card">
+            <h2>Pending Tasks</h2>
+            <div class="status-indicator">
+                <div class="progress-bar yellow" style="width: 50%;"></div>
+            </div>
+            <p>50% of tasks are still in progress</p>
+        </div>
+
+        <div class="status-card">
+            <h2>Urgent Issues</h2>
+            <div class="status-indicator">
+                <div class="progress-bar red" style="width: 20%;"></div>
+            </div>
+            <p>20% of issues need immediate attention</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        const poData = [{"Purchase Order": "PO-10243890", "Customer": "Sysco Riverside, INC", "Buyer": "GEOFFREY POTTER", "Order Date": "2024-09-13", "Delivery Date": "2024-09-26", "Status": "CONFIRMED"}, {"Purchase Order": "PO-29587710", "Customer": "Sysco Chicago, INC", "Buyer": "AARON REICHOW", "Order Date": "2024-08-29", "Delivery Date": "2024-09-09", "Status": "DELIVERED"}, {"Purchase Order": "PO-59406120", "Customer": "Sysco Nashville, LLC", "Buyer": "CRYSTAL FERGUSON", "Order Date": "2024-08-30", "Delivery Date": "2024-09-10", "Status": "DELIVERED"}, {"Purchase Order": "PO-38215570", "Customer": "Sysco North Texas, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-03", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-28069770", "Customer": "Sysco Food Services of Denver", "Buyer": "CELINA DOWLING", "Order Date": "2024-09-03", "Delivery Date": "2024-09-16", "Status": "DELIVERED"}, {"Purchase Order": "PO-27378750", "Customer": "Sysco Central Texas", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-27286940", "Customer": "Sysco Houston, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "TRANSIT"}];
+        
+        const confirmedContent = document.getElementById('confirmed-content');
+        const transitContent = document.getElementById('transit-content');
+        const deliveredContent = document.getElementById('delivered-content');
+
+        poData.forEach(po => {
+            const poCard = document.createElement('div');
+            poCard.className = 'po-card';
+
+            const poHeader = document.createElement('div');
+            poHeader.className = 'po-header';
+            poHeader.innerText = po["Purchase Order"];
+
+            const poDetails = document.createElement('div');
+            poDetails.className = 'po-details';
+            poDetails.innerHTML = `
+                <div><span class="label">Customer:</span> ${po["Customer"]}</div>
+                <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
+                <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
+                <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
+            `;
+
+            const poStatus = document.createElement('div');
+            poStatus.className = `po-status ${po["Status"]}`;
+            poStatus.innerText = po["Status"];
+
+            poCard.appendChild(poHeader);
+            poCard.appendChild(poDetails);
+            poCard.appendChild(poStatus);
+
+            if (po["Status"] === 'CONFIRMED') {
+                confirmedContent.appendChild(poCard);
+            } else if (po["Status"] === 'TRANSIT') {
+                transitContent.appendChild(poCard);
+            } else if (po["Status"] === 'DELIVERED') {
+                deliveredContent.appendChild(poCard);
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO Status Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .logo {
+            width: 150px;
+            margin: 20px auto;
+            display: block;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between; /* Adjusted to distribute columns */
+        }
+        .section {
+            flex: 1;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Space between cards */
+        }
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .po-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+        .po-card:hover {
+            transform: translateY(-10px);
+        }
+        .po-header {
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+        }
+        .po-details {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .po-status {
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 0 10px 10px;
+        }
+        .CONFIRMED {
+            background-color: #f0ad4e; /* Yellow */
+        }
+        .DELIVERED {
+            background-color: #5cb85c; /* Green */
+        }
+        .TRANSIT {
+            background-color: #0275d8; /* Blue */
+        }
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="/Users/ace/Library/Mobile Documents/com~apple~CloudDocs/RTE CUISINE/BRAND/rte-logo1.png" alt="RTE Cuisine Logo" class="logo">
+
+    <div class="container">
+        <div class="section" id="confirmed-section">
+            <div class="section-title">Confirmed</div>
+            <div class="section-content" id="confirmed-content"></div>
+        </div>
+        <div class="section" id="transit-section">
+            <div class="section-title">Transit</div>
+            <div class="section-content" id="transit-content"></div>
+        </div>
+        <div class="section" id="delivered-section">
+            <div class="section-title">Delivered</div>
+            <div class="section-content" id="delivered-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const poData = [{"Purchase Order": "PO-10243890", "Customer": "Sysco Riverside, INC", "Buyer": "GEOFFREY POTTER", "Order Date": "2024-09-13", "Delivery Date": "2024-09-26", "Status": "CONFIRMED"}, {"Purchase Order": "PO-29587710", "Customer": "Sysco Chicago, INC", "Buyer": "AARON REICHOW", "Order Date": "2024-08-29", "Delivery Date": "2024-09-09", "Status": "DELIVERED"}, {"Purchase Order": "PO-59406120", "Customer": "Sysco Nashville, LLC", "Buyer": "CRYSTAL FERGUSON", "Order Date": "2024-08-30", "Delivery Date": "2024-09-10", "Status": "DELIVERED"}, {"Purchase Order": "PO-38215570", "Customer": "Sysco North Texas, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-03", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-28069770", "Customer": "Sysco Food Services of Denver", "Buyer": "CELINA DOWLING", "Order Date": "2024-09-03", "Delivery Date": "2024-09-16", "Status": "DELIVERED"}, {"Purchase Order": "PO-27378750", "Customer": "Sysco Central Texas", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "DELIVERED"}, {"Purchase Order": "PO-27286940", "Customer": "Sysco Houston, INC", "Buyer": "NICHOLE BONIN", "Order Date": "2024-09-10", "Delivery Date": "2024-09-17", "Status": "TRANSIT"}, {"Purchase Order": "PO-TEST", "Customer": "SYSCO - TEST", "Buyer": "ACE", "Order Date": NaN, "Delivery Date": NaN, "Status": "TRANSIT"}];
+    
+        const confirmedContent = document.getElementById('confirmed-content');
+        const transitContent = document.getElementById('transit-content');
+        const deliveredContent = document.getElementById('delivered-content');
+    
+        poData.forEach(po => {
+            const poCard = document.createElement('div');
+            poCard.className = 'po-card';
+    
+            const poHeader = document.createElement('div');
+            poHeader.className = 'po-header';
+            poHeader.innerText = po["Purchase Order"];
+    
+            const poDetails = document.createElement('div');
+            poDetails.className = 'po-details';
+            poDetails.innerHTML = `
+                <div><span class="label">Customer:</span> ${po["Customer"]}</div>
+                <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
+                <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
+                <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
+            `;
+    
+            const poStatus = document.createElement('div');
+            poStatus.className = `po-status ${po["Status"]}`;
+            poStatus.innerText = po["Status"];
+    
+            poCard.appendChild(poHeader);
+            poCard.appendChild(poDetails);
+            poCard.appendChild(poStatus);
+    
+            if (po["Status"] === 'CONFIRMED') {
+                confirmedContent.appendChild(poCard);
+            } else if (po["Status"] === 'TRANSIT') {
+                transitContent.appendChild(poCard);
+            } else if (po["Status"] === 'DELIVERED') {
+                deliveredContent.appendChild(poCard);
+            }
+        });
+    </script>    
+
+</body>
+</html>

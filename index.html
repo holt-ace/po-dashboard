@@ -101,6 +101,21 @@
         .TRANSIT {
             background-color: #009ADE; /* Blue Bird */
         }
+        .po-invoice {
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+        }
+        .SENT {
+            background-color: #FFA500; /* Orange for Sent */
+        }
+        .RECEIVED {
+            background-color: #4CAF50; /* Green for Received */
+        }
+        .PAID {
+            background-color: #1E90FF; /* Blue for Paid */
+        }
         .label {
             font-weight: bold;
         }
@@ -137,52 +152,8 @@
         "Order Date": "2024-09-13",
         "Delivery Date": "2024-09-26",
         "Status": "CONFIRMED",
+        "Invoice": NaN,
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"
-    },
-    {
-        "Purchase Order": "PO-29587710",
-        "Customer": "Sysco Chicago, INC",
-        "Buyer": "AARON REICHOW",
-        "Order Date": "2024-08-29",
-        "Delivery Date": "2024-09-09",
-        "Status": "DELIVERED",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
-    },
-    {
-        "Purchase Order": "PO-59406120",
-        "Customer": "Sysco Nashville, LLC",
-        "Buyer": "CRYSTAL FERGUSON",
-        "Order Date": "2024-08-30",
-        "Delivery Date": "2024-09-10",
-        "Status": "DELIVERED",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
-    },
-    {
-        "Purchase Order": "PO-38215570",
-        "Customer": "Sysco North Texas, INC",
-        "Buyer": "NICHOLE BONIN",
-        "Order Date": "2024-09-03",
-        "Delivery Date": "2024-09-17",
-        "Status": "DELIVERED",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
-    },
-    {
-        "Purchase Order": "PO-28069770",
-        "Customer": "Sysco Food Services of Denver",
-        "Buyer": "CELINA DOWLING",
-        "Order Date": "2024-09-03",
-        "Delivery Date": "2024-09-16",
-        "Status": "DELIVERED",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
-    },
-    {
-        "Purchase Order": "PO-27378750",
-        "Customer": "Sysco Central Texas",
-        "Buyer": "NICHOLE BONIN",
-        "Order Date": "2024-09-10",
-        "Delivery Date": "2024-09-17",
-        "Status": "DELIVERED",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"
     },
     {
         "Purchase Order": "PO-27286940",
@@ -191,23 +162,74 @@
         "Order Date": "2024-09-10",
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27286940.pdf"
+    },
+    {
+        "Purchase Order": "PO-27378750",
+        "Customer": "Sysco Central Texas",
+        "Buyer": "NICHOLE BONIN",
+        "Order Date": "2024-09-10",
+        "Delivery Date": "2024-09-17",
+        "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"
+    },
+    {
+        "Purchase Order": "PO-28069770",
+        "Customer": "Sysco Food Services of Denver",
+        "Buyer": "CELINA DOWLING",
+        "Order Date": "2024-09-03",
+        "Delivery Date": "2024-09-16",
+        "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
+    },
+    {
+        "Purchase Order": "PO-29587710",
+        "Customer": "Sysco Chicago, INC",
+        "Buyer": "AARON REICHOW",
+        "Order Date": "2024-08-29",
+        "Delivery Date": "2024-09-09",
+        "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
+    },
+    {
+        "Purchase Order": "PO-38215570",
+        "Customer": "Sysco North Texas, INC",
+        "Buyer": "NICHOLE BONIN",
+        "Order Date": "2024-09-03",
+        "Delivery Date": "2024-09-17",
+        "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
+    },
+    {
+        "Purchase Order": "PO-59406120",
+        "Customer": "Sysco Nashville, LLC",
+        "Buyer": "CRYSTAL FERGUSON",
+        "Order Date": "2024-08-30",
+        "Delivery Date": "2024-09-10",
+        "Status": "DELIVERED",
+        "Invoice": "RECEIVED",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
     }
 ];
 
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');
         const deliveredContent = document.getElementById('delivered-content');
-    
+
         poData.forEach(po => {
             const poCard = document.createElement('div');
             poCard.className = 'po-card';
             poCard.onclick = () => window.open(po.pdf, '_blank'); // Opens the PDF in a new tab
-    
+
             const poHeader = document.createElement('div');
             poHeader.className = 'po-header';
             poHeader.innerText = po["Purchase Order"];
-    
+
             const poDetails = document.createElement('div');
             poDetails.className = 'po-details';
             poDetails.innerHTML = `
@@ -216,15 +238,20 @@
                 <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
                 <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
             `;
-    
+
             const poStatus = document.createElement('div');
             poStatus.className = `po-status ${po["Status"]}`;
             poStatus.innerText = po["Status"];
-    
+
+            const poInvoice = document.createElement('div');
+            poInvoice.className = `po-invoice ${po["Invoice"]}`;
+            poInvoice.innerText = `Invoice: ${po["Invoice"]}`;
+
             poCard.appendChild(poHeader);
             poCard.appendChild(poDetails);
             poCard.appendChild(poStatus);
-    
+            poCard.appendChild(poInvoice);
+
             if (po["Status"] === 'CONFIRMED') {
                 confirmedContent.appendChild(poCard);
             } else if (po["Status"] === 'TRANSIT') {

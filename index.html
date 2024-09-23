@@ -12,10 +12,10 @@
             margin: 0;
             padding: 0;
             background-color: #F4F4F9;
-            color: #686058; /* Pepper color */
+            color: #686058;
         }
         header {
-            background-color: #333;
+            background-color: #283845; /* Updated brand color */
             color: white;
             padding: 10px;
             text-align: center;
@@ -23,7 +23,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #A2D45E; /* RTE Green */
+            color: #60A870; /* Updated green brand color */
         }
         .logo {
             width: 400px;
@@ -77,7 +77,7 @@
         }
         .po-header {
             padding: 15px;
-            background-color: #686058; /* Pepper */
+            background-color: #686058;
             color: #fff;
             text-align: center;
             font-weight: bold;
@@ -93,13 +93,13 @@
             border-radius: 0 0 10px 10px;
         }
         .CONFIRMED {
-            background-color: #FFA400; /* Tangerine */
+            background-color: #E69500;
         }
         .DELIVERED {
-            background-color: #45A041; /* Grass Green */
+            background-color: #45A041;
         }
         .TRANSIT {
-            background-color: #009ADE; /* Blue Bird */
+            background-color: #009ADE;
         }
         .po-invoice {
             padding: 10px;
@@ -108,16 +108,29 @@
             font-weight: bold;
         }
         .SENT {
-            background-color: #FFA500; /* Orange for Sent */
+            background-color: #FFA500;
         }
         .RECEIVED {
-            background-color: #4CAF50; /* Green for Received */
+            background-color: #4CAF50;
         }
         .PAID {
-            background-color: #1E90FF; /* Blue for Paid */
+            background-color: #1E90FF;
         }
         .label {
             font-weight: bold;
+        }
+        /* Add Key styling */
+        .key {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .key ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .key li {
+            margin-bottom: 10px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -143,6 +156,20 @@
         </div>
     </div>
 
+    <!-- Add Key -->
+    <div class="key">
+        <h2>Key:</h2>
+        <ul>
+            <li><strong>IQF</strong> - Individually Quick Frozen</li>
+            <li><strong>Shelf Stable</strong> - Non-refrigerated items</li>
+            <li><strong>Confirmed</strong> - PO is confirmed and awaiting shipment</li>
+            <li><strong>Transit</strong> - PO is on its way</li>
+            <li><strong>Delivered</strong> - PO has been delivered</li>
+            <li><strong>Paid</strong> - Invoice has been paid</li>
+            <li><strong>Received</strong> - Invoice has been received but not paid yet</li>
+        </ul>
+    </div>
+
     <script>
         const poData = [
     {
@@ -153,6 +180,7 @@
         "Delivery Date": "2024-09-09",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
     },
     {
@@ -163,6 +191,7 @@
         "Delivery Date": "2024-09-10",
         "Status": "DELIVERED",
         "Invoice": "RECEIVED",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
     },
     {
@@ -173,6 +202,7 @@
         "Delivery Date": "2024-09-16",
         "Status": "DELIVERED",
         "Invoice": "RECEIVED",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
     },
     {
@@ -183,6 +213,7 @@
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27286940.pdf"
     },
     {
@@ -193,6 +224,7 @@
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
         "Invoice": "RECEIVED",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"
     },
     {
@@ -203,6 +235,7 @@
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
         "Invoice": "RECEIVED",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
     },
     {
@@ -213,6 +246,7 @@
         "Delivery Date": "2024-09-26",
         "Status": "CONFIRMED",
         "Invoice": NaN,
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"
     },
     {
@@ -223,7 +257,19 @@
         "Delivery Date": "2024-09-26",
         "Status": "TRANSIT",
         "Invoice": NaN,
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38240150.pdf"
+    },
+    {
+        "Purchase Order": "PO-29592910",
+        "Customer": "Sysco Chicago, INC",
+        "Buyer": "AARON REICHOW",
+        "Order Date": "2024-09-23",
+        "Delivery Date": "2024-10-14",
+        "Status": "CONFIRMED",
+        "Invoice": NaN,
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29592910.pdf"
     }
 ];
 
@@ -247,6 +293,7 @@
                 <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
                 <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
                 <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
+                <div><span class="label">Type:</span> ${po["Type"]}</div> <!-- Added Type here -->
             `;
 
             const poStatus = document.createElement('div');

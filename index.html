@@ -31,12 +31,9 @@
             margin: 10px auto;
         }
         .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
             display: flex;
-            gap: 20px;
             justify-content: space-between;
+            gap: 20px;
         }
         .section {
             flex: 1;
@@ -107,31 +104,105 @@
             color: #fff;
             font-weight: bold;
         }
-        .SENT {
-            background-color: #FFA500;
-        }
         .RECEIVED {
-            background-color: #4CAF50;
+            background-color: #1E90FF;
         }
         .PAID {
-            background-color: #1E90FF;
+            background-color: #4CAF50;
         }
         .label {
             font-weight: bold;
         }
-        /* Add Key styling */
-        .key {
-            margin: 20px auto;
-            max-width: 800px;
+
+        /* Styling for Icon and Type Text */
+        .po-type {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #686058;
+            margin-top: 10px;
         }
+
+        .type-icon {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+        .iqf .type-text {
+            color: #5a6bef;
+        }
+
+        .shelf-stable .type-text {
+            color: #f3f668;
+        }
+
+        /* Static key styling */
+        .key {
+            max-width: 200px; /* Slimmer */
+            padding: 10px;
+        }
+
+        .key h2 {
+            font-size: 18px; /* Slightly smaller heading */
+            margin-bottom: 10px;
+        }
+
+        .key h3 {
+            font-size: 16px; /* Smaller subheading */
+            margin-bottom: 8px;
+        }
+
         .key ul {
             list-style-type: none;
-            padding: 0;
+            padding-left: 0;
         }
-        .key li {
-            margin-bottom: 10px;
-            font-size: 18px;
+
+        .key ul li {
+            display: flex;
+            align-items: center;
+            font-size: 14px; /* Smaller text */
+            margin-bottom: 5px;
         }
+
+        .key-box {
+            width: 12px; /* Smaller color boxes */
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+
+        /* .iqf-box {
+            background-color: #5a6bef;
+        }
+
+        .shelf-stable-box {
+            background-color: #f3f668;
+        } */
+
+        .confirmed-box {
+            background-color: #E69500;
+        }
+
+        .transit-box {
+            background-color: #009ADE;
+        }
+
+        .delivered-box {
+            background-color: #4CAF50;
+        }
+
+        .sent-box {
+            background-color: #FFA500;
+        }
+
+        .received-box {
+            background-color: #1E90FF;
+        }
+
+        .paid-box {
+            background-color: #4CAF50;
+        }
+        
     </style>
 </head>
 <body>
@@ -142,32 +213,51 @@
     </header>
 
     <div class="container">
+        <!-- Static Legend (cleaned up) -->
+        <div class="key">
+            <h2>Legend</h2>
+            <div class="key-group">
+                <h3>Type:</h3>
+                <ul>
+                    <li>❄️ IQF </li>
+                    <li>📦 Shelf Stable </li>
+                </ul>
+            </div>
+            <div class="key-group">
+                <h3>Status:</h3>
+                <ul>
+                    <li><span class="key-box confirmed-box"></span> Confirmed</li>
+                    <li><span class="key-box transit-box"></span> Transit</li>
+                    <li><span class="key-box delivered-box"></span> Delivered</li>
+                </ul>
+            </div>
+            <div class="key-group">
+                <h3>Invoice:</h3>
+                <ul>
+                    <li><span class="key-box sent-box"></span> Sent</li>
+                    <li><span class="key-box received-box"></span> Received</li>
+                    <li><span class="key-box paid-box"></span> Paid</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Confirmed section -->
         <div class="section" id="confirmed-section">
             <div class="section-title">Confirmed</div>
             <div class="section-content" id="confirmed-content"></div>
         </div>
+
+        <!-- Transit section -->
         <div class="section" id="transit-section">
             <div class="section-title">Transit</div>
             <div class="section-content" id="transit-content"></div>
         </div>
+
+        <!-- Delivered section -->
         <div class="section" id="delivered-section">
             <div class="section-title">Delivered</div>
             <div class="section-content" id="delivered-content"></div>
         </div>
-    </div>
-
-    <!-- Add Key -->
-    <div class="key">
-        <h2>Key:</h2>
-        <ul>
-            <li><strong>IQF</strong> - Individually Quick Frozen</li>
-            <li><strong>Shelf Stable</strong> - Non-refrigerated items</li>
-            <li><strong>Confirmed</strong> - PO is confirmed and awaiting shipment</li>
-            <li><strong>Transit</strong> - PO is on its way</li>
-            <li><strong>Delivered</strong> - PO has been delivered</li>
-            <li><strong>Paid</strong> - Invoice has been paid</li>
-            <li><strong>Received</strong> - Invoice has been received but not paid yet</li>
-        </ul>
     </div>
 
     <script>
@@ -293,7 +383,10 @@
                 <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
                 <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
                 <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
-                <div><span class="label">Type:</span> ${po["Type"]}</div> <!-- Added Type here -->
+                <div class="po-type">
+                    <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
+                    <span class="type-text">${po["Type"]}</span>
+                </div>
             `;
 
             const poStatus = document.createElement('div');

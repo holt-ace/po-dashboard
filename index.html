@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PO Status Dashboard</title>
+    <title>PO Status Dashboard with Sorting</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Futura:wght@400;500;700&display=swap');
         
@@ -15,62 +15,119 @@
             color: #686058;
         }
         header {
-            background-color: #5C7E96; /* Updated brand color */
+            background-color: #5C7E96;
             color: white;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
+            border-radius: 0 0 20px 20px;
         }
         header h1 {
             margin: 0;
-            font-size: 28px;
-            color: #60A870; /* Updated green brand color */
+            font-size: 32px;
+            color: #60A870;
         }
         .logo {
-            width: 400px;
+            width: 250px;
             display: block;
-            margin: 10px auto;
+            margin: 0 auto 20px;
         }
         .container {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            padding: 20px;
+        }
+        .container.full-width {
+            grid-template-columns: 1fr;
         }
         .section {
-            flex: 1;
             margin-bottom: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 15px;
         }
         .section-title {
             text-align: center;
             font-size: 24px;
             margin: 0;
-            font-weight: bold;
-            background-color: #F4F4F9;
+            font-weight: 700;
+            background-color: #60A870;
+            color: #fff;
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        .section-content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .sorting {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .sorting input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .sorting select, .sorting button {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #60A870;
+            color: white;
+            cursor: pointer;
+        }
+        .sorting button:hover {
+            background-color: #4f8a60;
+        }
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #5C7E96;
+            color: #fff;
+        }
+        .filter-buttons button.active {
+            background-color: #60A870;
         }
         .po-card {
-            background: #fff;
-            border-radius: 10px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f5);
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s;
+            transition: transform 0.3s, opacity 0.5s;
             cursor: pointer;
+            border: 1px solid #E0E0E0;
+            padding: 15px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            100% {
+                opacity: 1;
+            }
         }
         .po-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .po-header {
             padding: 15px;
@@ -78,16 +135,25 @@
             color: #fff;
             text-align: center;
             font-weight: bold;
+            font-size: 24px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
         .po-details {
-            padding: 20px;
-            line-height: 1.6;
+            padding: 15px;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+        .po-details div {
+            margin-bottom: 10px;
         }
         .po-status {
             padding: 10px;
             text-align: center;
             color: #fff;
-            border-radius: 0 0 10px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 10px;
         }
         .CONFIRMED {
             background-color: #E69500;
@@ -99,10 +165,12 @@
             background-color: #009ADE;
         }
         .po-invoice {
-            padding: 10px;
+            padding: 8px;
             text-align: center;
             color: #fff;
             font-weight: bold;
+            border-radius: 5px;
+            margin-top: 5px;
         }
         .RECEIVED {
             background-color: #1E90FF;
@@ -111,98 +179,20 @@
             background-color: #4CAF50;
         }
         .label {
-            font-weight: bold;
+            font-weight: 600;
+            color: #444;
         }
-
-        /* Styling for Icon and Type Text */
         .po-type {
             display: flex;
             align-items: center;
             font-weight: bold;
-            color: #686058;
+            color: #444;
             margin-top: 10px;
         }
-
         .type-icon {
-            font-size: 24px;
+            font-size: 20px;
             margin-right: 8px;
         }
-
-        .iqf .type-text {
-            color: #5a6bef;
-        }
-
-        .shelf-stable .type-text {
-            color: #f3f668;
-        }
-
-        /* Static key styling */
-        .key {
-            max-width: 200px; /* Slimmer */
-            padding: 10px;
-        }
-
-        .key h2 {
-            font-size: 18px; /* Slightly smaller heading */
-            margin-bottom: 10px;
-        }
-
-        .key h3 {
-            font-size: 16px; /* Smaller subheading */
-            margin-bottom: 8px;
-        }
-
-        .key ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .key ul li {
-            display: flex;
-            align-items: center;
-            font-size: 14px; /* Smaller text */
-            margin-bottom: 5px;
-        }
-
-        .key-box {
-            width: 12px; /* Smaller color boxes */
-            height: 12px;
-            margin-right: 8px;
-            border-radius: 3px;
-        }
-
-        /* .iqf-box {
-            background-color: #5a6bef;
-        }
-
-        .shelf-stable-box {
-            background-color: #f3f668;
-        } */
-
-        .confirmed-box {
-            background-color: #E69500;
-        }
-
-        .transit-box {
-            background-color: #009ADE;
-        }
-
-        .delivered-box {
-            background-color: #4CAF50;
-        }
-
-        .sent-box {
-            background-color: #FFA500;
-        }
-
-        .received-box {
-            background-color: #1E90FF;
-        }
-
-        .paid-box {
-            background-color: #4CAF50;
-        }
-        
     </style>
 </head>
 <body>
@@ -212,48 +202,35 @@
         <h1>Purchase Order Status Dashboard</h1>
     </header>
 
-    <div class="container">
-        <!-- Static Legend (cleaned up) -->
-        <div class="key">
-            <h2>Legend</h2>
-            <div class="key-group">
-                <h3>Type:</h3>
-                <ul>
-                    <li>❄️ IQF </li>
-                    <li>📦 Shelf Stable </li>
-                </ul>
-            </div>
-            <div class="key-group">
-                <h3>Status:</h3>
-                <ul>
-                    <li><span class="key-box confirmed-box"></span> Confirmed</li>
-                    <li><span class="key-box transit-box"></span> Transit</li>
-                    <li><span class="key-box delivered-box"></span> Delivered</li>
-                </ul>
-            </div>
-            <div class="key-group">
-                <h3>Invoice:</h3>
-                <ul>
-                    <li><span class="key-box sent-box"></span> Sent</li>
-                    <li><span class="key-box received-box"></span> Received</li>
-                    <li><span class="key-box paid-box"></span> Paid</li>
-                </ul>
-            </div>
-        </div>
+    <div class="sorting">
+        <input type="text" id="search-bar" placeholder="Search by Customer or PO Number" oninput="filterPOs()">
+        <label for="sort-options">Sort by:</label>
+        <select id="sort-options">
+            <option value="orderDate">Order Date</option>
+            <option value="deliveryDate">Delivery Date</option>
+            <option value="customer">Customer</option>
+        </select>
+        <button onclick="sortPOs()">Sort</button>
+    </div>
 
-        <!-- Confirmed section -->
+    <div class="filter-buttons">
+        <button onclick="filterStatus('ALL')" class="active">All</button>
+        <button onclick="filterStatus('CONFIRMED')">Confirmed</button>
+        <button onclick="filterStatus('TRANSIT')">Transit</button>
+        <button onclick="filterStatus('DELIVERED')">Delivered</button>
+    </div>
+
+    <div class="container" id="po-container">
         <div class="section" id="confirmed-section">
             <div class="section-title">Confirmed</div>
             <div class="section-content" id="confirmed-content"></div>
         </div>
 
-        <!-- Transit section -->
         <div class="section" id="transit-section">
             <div class="section-title">Transit</div>
             <div class="section-content" id="transit-content"></div>
         </div>
 
-        <!-- Delivered section -->
         <div class="section" id="delivered-section">
             <div class="section-title">Delivered</div>
             <div class="section-content" id="delivered-content"></div>
@@ -432,51 +409,97 @@
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');
         const deliveredContent = document.getElementById('delivered-content');
+        const filterButtons = document.querySelectorAll('.filter-buttons button');
+        const poContainer = document.getElementById('po-container');
 
-        poData.forEach(po => {
-            const poCard = document.createElement('div');
-            poCard.className = 'po-card';
-            poCard.onclick = () => window.open(po.pdf, '_blank'); // Opens the PDF in a new tab
+        function displayPOs(poData) {
+            confirmedContent.innerHTML = '';
+            transitContent.innerHTML = '';
+            deliveredContent.innerHTML = '';
+    
+            poData.forEach(po => {
+                const poCard = document.createElement('div');
+                poCard.className = 'po-card';
+                poCard.onclick = () => window.open(po.pdf, '_blank');
 
-            const poHeader = document.createElement('div');
-            poHeader.className = 'po-header';
-            poHeader.innerText = po["Purchase Order"];
+                const poHeader = document.createElement('div');
+                poHeader.className = 'po-header';
+                poHeader.innerHTML = `<strong>${po["Customer"]}</strong><br><span>${po["Purchase Order"]}</span>`;
 
-            const poDetails = document.createElement('div');
-            poDetails.className = 'po-details';
-            poDetails.innerHTML = `
-                <div><span class="label">Customer:</span> ${po["Customer"]}</div>
-                <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
-                <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
-                <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
-                <div class="po-type">
-                    <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
-                    <span class="type-text">${po["Type"]}</span>
-                </div>
-            `;
+                const poDetails = document.createElement('div');
+                poDetails.className = 'po-details';
+                poDetails.innerHTML = `
+                    <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
+                    <div><span class="label">Order Date:</span> ${new Date(po["Order Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div><span class="label">Delivery Date:</span> ${new Date(po["Delivery Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div class="po-type">
+                        <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
+                        <span class="type-text">${po["Type"]}</span>
+                    </div>
+                `;
 
-            const poStatus = document.createElement('div');
-            poStatus.className = `po-status ${po["Status"]}`;
-            poStatus.innerText = po["Status"];
+                const poStatus = document.createElement('div');
+                poStatus.className = `po-status ${po["Status"]}`;
+                poStatus.innerText = po["Status"];
 
-            const poInvoice = document.createElement('div');
-            poInvoice.className = `po-invoice ${po["Invoice"]}`;
-            poInvoice.innerText = `Invoice: ${po["Invoice"]}`;
+                const poInvoice = document.createElement('div');
+                poInvoice.className = `po-invoice ${po["Invoice"]}`;
+                poInvoice.innerText = po["Invoice"] ? `Invoice: ${po["Invoice"]}` : '';
 
-            poCard.appendChild(poHeader);
-            poCard.appendChild(poDetails);
-            poCard.appendChild(poStatus);
-            poCard.appendChild(poInvoice);
+                poCard.appendChild(poHeader);
+                poCard.appendChild(poDetails);
+                poCard.appendChild(poStatus);
+                if (po["Invoice"]) poCard.appendChild(poInvoice);
 
-            if (po["Status"] === 'CONFIRMED') {
-                confirmedContent.appendChild(poCard);
-            } else if (po["Status"] === 'TRANSIT') {
-                transitContent.appendChild(poCard);
-            } else if (po["Status"] === 'DELIVERED') {
-                deliveredContent.appendChild(poCard);
+                if (po["Status"] === 'CONFIRMED') {
+                    confirmedContent.appendChild(poCard);
+                } else if (po["Status"] === 'TRANSIT') {
+                    transitContent.appendChild(poCard);
+                } else if (po["Status"] === 'DELIVERED') {
+                    deliveredContent.appendChild(poCard);
+                }
+            });
+        }
+
+        function sortPOs() {
+            const sortOption = document.getElementById('sort-options').value;
+            poData.sort((a, b) => {
+                if (sortOption === 'orderDate') {
+                    return new Date(a["Order Date"]) - new Date(b["Order Date"]);
+                } else if (sortOption === 'deliveryDate') {
+                    return new Date(a["Delivery Date"]) - new Date(b["Delivery Date"]);
+                } else if (sortOption === 'customer') {
+                    return a["Customer"].localeCompare(b["Customer"]);
+                }
+            });
+            displayPOs(poData);
+        }
+
+        function filterPOs() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const filteredPOs = poData.filter(po => 
+                po["Customer"].toLowerCase().includes(query) ||
+                po["Purchase Order"].toLowerCase().includes(query)
+            );
+            displayPOs(filteredPOs);
+        }
+
+        function filterStatus(status) {
+            filterButtons.forEach(button => button.classList.remove('active'));
+            poContainer.classList.remove('full-width');
+            if (status === 'ALL') {
+                displayPOs(poData);
+            } else {
+                const filteredPOs = poData.filter(po => po["Status"] === status);
+                displayPOs(filteredPOs);
+                if (filteredPOs.length > 0) {
+                    poContainer.classList.add('full-width');
+                }
             }
-        });
-    </script>    
+            document.querySelector(`.filter-buttons button[onclick="filterStatus('${status}')"]`).classList.add('active');
+        }
 
+        displayPOs(poData);
+    </script>
 </body>
 </html>

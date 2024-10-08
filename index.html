@@ -223,6 +223,68 @@
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            .sorting {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            .sorting input, .sorting select, .sorting button {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .filter-buttons button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .po-card {
+                padding: 10px;
+            }
+            .po-header {
+                font-size: 20px;
+            }
+            .po-details {
+                font-size: 14px;
+            }
+            #dark-mode-toggle {
+                padding: 8px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sorting {
+                flex-direction: column;
+                align-items: center;
+            }
+            .sorting input, .sorting select, .sorting button {
+                margin-bottom: 5px;
+                width: 100%;
+                max-width: 300px;
+            }
+            .filter-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .filter-buttons button {
+                margin: 5px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .po-card {
+                padding: 8px;
+            }
+            .po-header {
+                font-size: 18px;
+            }
+            .po-details {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>

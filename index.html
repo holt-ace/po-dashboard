@@ -15,7 +15,7 @@
             color: #686058;
         }
         header {
-            background-color: #5C7E96; /* Updated brand color */
+            background-color: #5C7E96;
             color: white;
             padding: 10px;
             text-align: center;
@@ -23,7 +23,7 @@
         header h1 {
             margin: 0;
             font-size: 28px;
-            color: #60A870; /* Updated green brand color */
+            color: #60A870;
         }
         .logo {
             width: 400px;
@@ -52,11 +52,6 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
-        }
-        .section-content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
         .po-card {
             background: #fff;
@@ -98,111 +93,9 @@
         .TRANSIT {
             background-color: #009ADE;
         }
-        .po-invoice {
-            padding: 10px;
-            text-align: center;
-            color: #fff;
-            font-weight: bold;
-        }
-        .RECEIVED {
-            background-color: #1E90FF;
-        }
-        .PAID {
-            background-color: #4CAF50;
-        }
         .label {
             font-weight: bold;
         }
-
-        /* Styling for Icon and Type Text */
-        .po-type {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            color: #686058;
-            margin-top: 10px;
-        }
-
-        .type-icon {
-            font-size: 24px;
-            margin-right: 8px;
-        }
-
-        .iqf .type-text {
-            color: #5a6bef;
-        }
-
-        .shelf-stable .type-text {
-            color: #f3f668;
-        }
-
-        /* Static key styling */
-        .key {
-            max-width: 200px; /* Slimmer */
-            padding: 10px;
-        }
-
-        .key h2 {
-            font-size: 18px; /* Slightly smaller heading */
-            margin-bottom: 10px;
-        }
-
-        .key h3 {
-            font-size: 16px; /* Smaller subheading */
-            margin-bottom: 8px;
-        }
-
-        .key ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .key ul li {
-            display: flex;
-            align-items: center;
-            font-size: 14px; /* Smaller text */
-            margin-bottom: 5px;
-        }
-
-        .key-box {
-            width: 12px; /* Smaller color boxes */
-            height: 12px;
-            margin-right: 8px;
-            border-radius: 3px;
-        }
-
-        /* .iqf-box {
-            background-color: #5a6bef;
-        }
-
-        .shelf-stable-box {
-            background-color: #f3f668;
-        } */
-
-        .confirmed-box {
-            background-color: #E69500;
-        }
-
-        .transit-box {
-            background-color: #009ADE;
-        }
-
-        .delivered-box {
-            background-color: #4CAF50;
-        }
-
-        .sent-box {
-            background-color: #FFA500;
-        }
-
-        .received-box {
-            background-color: #1E90FF;
-        }
-
-        .paid-box {
-            background-color: #4CAF50;
-        }
-        
     </style>
 </head>
 <body>
@@ -213,34 +106,6 @@
     </header>
 
     <div class="container">
-        <!-- Static Legend (cleaned up) -->
-        <div class="key">
-            <h2>Legend</h2>
-            <div class="key-group">
-                <h3>Type:</h3>
-                <ul>
-                    <li>❄️ IQF </li>
-                    <li>📦 Shelf Stable </li>
-                </ul>
-            </div>
-            <div class="key-group">
-                <h3>Status:</h3>
-                <ul>
-                    <li><span class="key-box confirmed-box"></span> Confirmed</li>
-                    <li><span class="key-box transit-box"></span> Transit</li>
-                    <li><span class="key-box delivered-box"></span> Delivered</li>
-                </ul>
-            </div>
-            <div class="key-group">
-                <h3>Invoice:</h3>
-                <ul>
-                    <li><span class="key-box sent-box"></span> Sent</li>
-                    <li><span class="key-box received-box"></span> Received</li>
-                    <li><span class="key-box paid-box"></span> Paid</li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Confirmed section -->
         <div class="section" id="confirmed-section">
             <div class="section-title">Confirmed</div>
@@ -264,7 +129,7 @@
         const poData = [
     {
         "Purchase Order": "PO-38331580",
-        "Customer": "Sysco North Texas, INC",
+        "Customer": "Sysco North Texas",
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-10-01",
         "Delivery Date": "2024-10-17",
@@ -275,7 +140,7 @@
     },
     {
         "Purchase Order": "PO-27312200",
-        "Customer": "Sysco Houston, INC",
+        "Customer": "Sysco Houston",
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-09-23",
         "Delivery Date": "2024-10-17",
@@ -297,7 +162,7 @@
     },
     {
         "Purchase Order": "PO-29592910",
-        "Customer": "Sysco Chicago, INC",
+        "Customer": "Sysco Chicago",
         "Buyer": "Aaron Reichow",
         "Order Date": "2024-09-23",
         "Delivery Date": "2024-10-14",
@@ -308,7 +173,7 @@
     },
     {
         "Purchase Order": "PO-28142160",
-        "Customer": "Sysco Denver, INC",
+        "Customer": "Sysco Denver",
         "Buyer": "Celina Dowling",
         "Order Date": "2024-09-18",
         "Delivery Date": "2024-10-14",
@@ -319,7 +184,7 @@
     },
     {
         "Purchase Order": "PO-10269630",
-        "Customer": "Sysco Riverside, INC",
+        "Customer": "Sysco Riverside",
         "Buyer": "Geoffrey Potter",
         "Order Date": "2024-09-18",
         "Delivery Date": "2024-10-14",
@@ -330,7 +195,7 @@
     },
     {
         "Purchase Order": "PO-38240150",
-        "Customer": "Sysco North Texas, INC",
+        "Customer": "Sysco North Texas",
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-09-09",
         "Delivery Date": "2024-09-26",
@@ -341,7 +206,7 @@
     },
     {
         "Purchase Order": "PO-10243890",
-        "Customer": "Sysco Riverside, INC",
+        "Customer": "Sysco Riverside",
         "Buyer": "Geoffrey Potter",
         "Order Date": "2024-09-13",
         "Delivery Date": "2024-09-26",
@@ -363,7 +228,7 @@
     },
     {
         "Purchase Order": "PO-27286940",
-        "Customer": "Sysco Houston, INC",
+        "Customer": "Sysco Houston",
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-09-10",
         "Delivery Date": "2024-09-17",
@@ -374,7 +239,7 @@
     },
     {
         "Purchase Order": "PO-38215570",
-        "Customer": "Sysco North Texas, INC",
+        "Customer": "Sysco North Texas",
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-09-03",
         "Delivery Date": "2024-09-17",
@@ -385,7 +250,7 @@
     },
     {
         "Purchase Order": "PO-28069770",
-        "Customer": "Sysco Denver, INC",
+        "Customer": "Sysco Denver",
         "Buyer": "Celina Dowling",
         "Order Date": "2024-09-03",
         "Delivery Date": "2024-09-16",
@@ -396,7 +261,7 @@
     },
     {
         "Purchase Order": "PO-59406120",
-        "Customer": "Sysco Nashville, LLC",
+        "Customer": "Sysco Nashville",
         "Buyer": "Crystal Ferguson",
         "Order Date": "2024-08-30",
         "Delivery Date": "2024-09-10",
@@ -407,7 +272,7 @@
     },
     {
         "Purchase Order": "PO-29587710",
-        "Customer": "Sysco Chicago, INC",
+        "Customer": "Sysco Chicago",
         "Buyer": "Aaron Reichow",
         "Order Date": "2024-08-29",
         "Delivery Date": "2024-09-09",
@@ -415,6 +280,17 @@
         "Invoice": "PAID",
         "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
+    },
+    {
+        "Purchase Order": "PO-30708300",
+        "Customer": "Sysco San Francisco",
+        "Buyer": "Kinsey Collins",
+        "Order Date": "2024-10-07",
+        "Delivery Date": "2024-10-21",
+        "Status": "CONFIRMED",
+        "Invoice": NaN,
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30708300.pdf"
     }
 ];
 
@@ -425,7 +301,7 @@
         poData.forEach(po => {
             const poCard = document.createElement('div');
             poCard.className = 'po-card';
-            poCard.onclick = () => window.open(po.pdf, '_blank'); // Opens the PDF in a new tab
+            poCard.onclick = () => window.open(po.pdf, '_blank');
 
             const poHeader = document.createElement('div');
             poHeader.className = 'po-header';
@@ -438,24 +314,15 @@
                 <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
                 <div><span class="label">Order Date:</span> ${po["Order Date"]}</div>
                 <div><span class="label">Delivery Date:</span> ${po["Delivery Date"]}</div>
-                <div class="po-type">
-                    <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
-                    <span class="type-text">${po["Type"]}</span>
-                </div>
             `;
 
             const poStatus = document.createElement('div');
             poStatus.className = `po-status ${po["Status"]}`;
             poStatus.innerText = po["Status"];
 
-            const poInvoice = document.createElement('div');
-            poInvoice.className = `po-invoice ${po["Invoice"]}`;
-            poInvoice.innerText = `Invoice: ${po["Invoice"]}`;
-
             poCard.appendChild(poHeader);
             poCard.appendChild(poDetails);
             poCard.appendChild(poStatus);
-            poCard.appendChild(poInvoice);
 
             if (po["Status"] === 'CONFIRMED') {
                 confirmedContent.appendChild(poCard);

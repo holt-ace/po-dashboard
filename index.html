@@ -13,6 +13,7 @@
             padding: 0;
             background-color: #F4F4F9;
             color: #686058;
+            transition: background-color 0.3s, color 0.3s;
         }
         header {
             background-color: #5C7E96;
@@ -46,6 +47,10 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 15px;
+            transition: all 0.3s ease;
+        }
+        .section.collapsed .section-content {
+            display: none;
         }
         .section-title {
             text-align: center;
@@ -57,6 +62,18 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        .dark-mode .section {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
+        .dark-mode .section-title {
+            background-color: #27ae60;
         }
         .sorting {
             text-align: center;
@@ -193,6 +210,19 @@
             font-size: 20px;
             margin-right: 8px;
         }
+        #dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #60A870;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -203,13 +233,15 @@
     </header>
 
     <div class="sorting">
-        <input type="text" id="search-bar" placeholder="Search by Customer or PO Number" oninput="filterPOs()">
+        <input type="text" id="search-bar" placeholder="Search by Customer, PO Number, or Buyer" oninput="filterPOs()">
         <label for="sort-options">Sort by:</label>
         <select id="sort-options">
             <option value="orderDate">Order Date</option>
             <option value="deliveryDate">Delivery Date</option>
             <option value="customer">Customer</option>
+            <option value="buyer">Buyer</option>
         </select>
+        <button onclick="toggleSortOrder()">Sort Order: <span id="sort-order">Ascending</span></button>
         <button onclick="sortPOs()">Sort</button>
     </div>
 
@@ -222,20 +254,22 @@
 
     <div class="container" id="po-container">
         <div class="section" id="confirmed-section">
-            <div class="section-title">Confirmed</div>
+            <div class="section-title" onclick="toggleSection(this)">Confirmed</div>
             <div class="section-content" id="confirmed-content"></div>
         </div>
 
         <div class="section" id="transit-section">
-            <div class="section-title">Transit</div>
+            <div class="section-title" onclick="toggleSection(this)">Transit</div>
             <div class="section-content" id="transit-content"></div>
         </div>
 
         <div class="section" id="delivered-section">
-            <div class="section-title">Delivered</div>
+            <div class="section-title" onclick="toggleSection(this)">Delivered</div>
             <div class="section-content" id="delivered-content"></div>
         </div>
     </div>
+
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
     <script>
         const poData = [
@@ -406,6 +440,8 @@
     }
 ];
 
+        let sortOrder = 'asc';
+
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');
         const deliveredContent = document.getElementById('delivered-content');
@@ -464,22 +500,32 @@
         function sortPOs() {
             const sortOption = document.getElementById('sort-options').value;
             poData.sort((a, b) => {
+                let comparison = 0;
                 if (sortOption === 'orderDate') {
-                    return new Date(a["Order Date"]) - new Date(b["Order Date"]);
+                    comparison = new Date(a["Order Date"]) - new Date(b["Order Date"]);
                 } else if (sortOption === 'deliveryDate') {
-                    return new Date(a["Delivery Date"]) - new Date(b["Delivery Date"]);
+                    comparison = new Date(a["Delivery Date"]) - new Date(b["Delivery Date"]);
                 } else if (sortOption === 'customer') {
-                    return a["Customer"].localeCompare(b["Customer"]);
+                    comparison = a["Customer"].localeCompare(b["Customer"]);
+                } else if (sortOption === 'buyer') {
+                    comparison = a["Buyer"].localeCompare(b["Buyer"]);
                 }
+                return sortOrder === 'asc' ? comparison : -comparison;
             });
             displayPOs(poData);
+        }
+
+        function toggleSortOrder() {
+            sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+            document.getElementById('sort-order').innerText = sortOrder === 'asc' ? 'Ascending' : 'Descending';
         }
 
         function filterPOs() {
             const query = document.getElementById('search-bar').value.toLowerCase();
             const filteredPOs = poData.filter(po => 
                 po["Customer"].toLowerCase().includes(query) ||
-                po["Purchase Order"].toLowerCase().includes(query)
+                po["Purchase Order"].toLowerCase().includes(query) ||
+                po["Buyer"].toLowerCase().includes(query)
             );
             displayPOs(filteredPOs);
         }
@@ -497,6 +543,15 @@
                 }
             }
             document.querySelector(`.filter-buttons button[onclick="filterStatus('${status}')"]`).classList.add('active');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function toggleSection(titleElement) {
+            const section = titleElement.parentElement;
+            section.classList.toggle('collapsed');
         }
 
         displayPOs(poData);

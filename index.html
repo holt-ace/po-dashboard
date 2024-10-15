@@ -534,15 +534,21 @@
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28234070.pdf"
     }
 ];
-
+    
         let sortOrder = 'asc';
-
+    
         const confirmedContent = document.getElementById('confirmed-content');
         const transitContent = document.getElementById('transit-content');
         const deliveredContent = document.getElementById('delivered-content');
         const filterButtons = document.querySelectorAll('.filter-buttons button');
         const poContainer = document.getElementById('po-container');
-
+    
+        // Function to correctly parse dates
+        function parseDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return new Date(year, month - 1, day); // Month is 0-indexed in JS Date
+        }
+    
         function displayPOs(poData) {
             confirmedContent.innerHTML = '';
             transitContent.innerHTML = '';
@@ -552,36 +558,36 @@
                 const poCard = document.createElement('div');
                 poCard.className = 'po-card';
                 poCard.onclick = () => window.open(po.pdf, '_blank');
-
+    
                 const poHeader = document.createElement('div');
                 poHeader.className = 'po-header';
                 poHeader.innerHTML = `<strong>${po["Customer"]}</strong><br><span>${po["Purchase Order"]}</span>`;
-
+    
                 const poDetails = document.createElement('div');
                 poDetails.className = 'po-details';
                 poDetails.innerHTML = `
                     <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
-                    <div><span class="label">Order Date:</span> ${new Date(po["Order Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-                    <div><span class="label">Delivery Date:</span> ${new Date(po["Delivery Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div><span class="label">Order Date:</span> ${parseDate(po["Order Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <div><span class="label">Delivery Date:</span> ${parseDate(po["Delivery Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
                     <div class="po-type">
                         <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
                         <span class="type-text">${po["Type"]}</span>
                     </div>
                 `;
-
+    
                 const poStatus = document.createElement('div');
                 poStatus.className = `po-status ${po["Status"]}`;
                 poStatus.innerText = po["Status"];
-
+    
                 const poInvoice = document.createElement('div');
                 poInvoice.className = `po-invoice ${po["Invoice"]}`;
                 poInvoice.innerText = po["Invoice"] ? `Invoice: ${po["Invoice"]}` : '';
-
+    
                 poCard.appendChild(poHeader);
                 poCard.appendChild(poDetails);
                 poCard.appendChild(poStatus);
                 if (po["Invoice"]) poCard.appendChild(poInvoice);
-
+    
                 if (po["Status"] === 'CONFIRMED') {
                     confirmedContent.appendChild(poCard);
                 } else if (po["Status"] === 'TRANSIT') {
@@ -591,15 +597,15 @@
                 }
             });
         }
-
+    
         function sortPOs() {
             const sortOption = document.getElementById('sort-options').value;
             poData.sort((a, b) => {
                 let comparison = 0;
                 if (sortOption === 'orderDate') {
-                    comparison = new Date(a["Order Date"]) - new Date(b["Order Date"]);
+                    comparison = parseDate(a["Order Date"]) - parseDate(b["Order Date"]);
                 } else if (sortOption === 'deliveryDate') {
-                    comparison = new Date(a["Delivery Date"]) - new Date(b["Delivery Date"]);
+                    comparison = parseDate(a["Delivery Date"]) - parseDate(b["Delivery Date"]);
                 } else if (sortOption === 'customer') {
                     comparison = a["Customer"].localeCompare(b["Customer"]);
                 } else if (sortOption === 'buyer') {
@@ -609,22 +615,22 @@
             });
             displayPOs(poData);
         }
-
+    
         function toggleSortOrder() {
             sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
             document.getElementById('sort-order').innerText = sortOrder === 'asc' ? 'Ascending' : 'Descending';
         }
-
+    
         function filterPOs() {
             const query = document.getElementById('search-bar').value.toLowerCase();
-            const filteredPOs = poData.filter(po => 
+            const filteredPOs = poData.filter(po =>
                 po["Customer"].toLowerCase().includes(query) ||
                 po["Purchase Order"].toLowerCase().includes(query) ||
                 po["Buyer"].toLowerCase().includes(query)
             );
             displayPOs(filteredPOs);
         }
-
+    
         function filterStatus(status) {
             filterButtons.forEach(button => button.classList.remove('active'));
             poContainer.classList.remove('full-width');
@@ -639,16 +645,16 @@
             }
             document.querySelector(`.filter-buttons button[onclick="filterStatus('${status}')"]`).classList.add('active');
         }
-
+    
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
-
+    
         function toggleSection(titleElement) {
             const section = titleElement.parentElement;
             section.classList.toggle('collapsed');
         }
-
+    
         displayPOs(poData);
     </script>
 </body>

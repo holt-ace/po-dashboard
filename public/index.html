@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PO Status Dashboard</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    
+<body>
+
+    <header>
+        <img src="images/rte-logo1.png" alt="RTE Cuisine Logo" class="logo">
+        <h1>Purchase Order Status Dashboard</h1>
+    </header>
+
+    <!-- Sorting Section -->
+    <div class="sorting">
+        <input type="text" id="search-bar" placeholder="Search by Customer, PO Number, or Buyer">
+        <label for="sort-options">Sort by:</label>
+        <select id="sort-options">
+            <option value="orderDate">Order Date</option>
+            <option value="deliveryDate">Delivery Date</option>
+            <option value="customer">Customer</option>
+            <option value="buyer">Buyer</option>
+        </select>
+        <button id="toggle-sort-order">Sort Order: <span id="sort-order">Ascending</span></button>
+        <button id="sort-button">Sort</button>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button data-status="ALL" class="active">All</button>
+        <button data-status="CONFIRMED">Confirmed</button>
+        <button data-status="TRANSIT">Transit</button>
+        <button data-status="DELIVERED">Delivered</button>
+    </div>
+
+
+    <div class="container" id="po-container">
+        <div class="section" id="confirmed-section">
+            <div class="section-title" onclick="toggleSection(this)">Confirmed</div>
+            <div class="section-content" id="confirmed-content"></div>
+        </div>
+
+        <div class="section" id="transit-section">
+            <div class="section-title" onclick="toggleSection(this)">Transit</div>
+            <div class="section-content" id="transit-content"></div>
+        </div>
+
+        <div class="section" id="delivered-section">
+            <div class="section-title" onclick="toggleSection(this)">Delivered</div>
+            <div class="section-content" id="delivered-content"></div>
+        </div>
+    </div>
+
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+    <script src="js/main.js" defer></script>
+
+</body>
+</html>

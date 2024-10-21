@@ -294,8 +294,8 @@ document.addEventListener('DOMContentLoaded', function() {
             poDetails.className = 'po-details';
             poDetails.innerHTML = `
                 <div><span class="label">Buyer:</span> ${po["Buyer"]}</div>
-                <div><span class="label">Order Date:</span> ${new Date(po["Order Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-                <div><span class="label">Delivery Date:</span> ${new Date(po["Delivery Date"]).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                <div><span class="label">Order Date:</span> ${formatDateToLocal(po["Order Date"])}</div>
+                <div><span class="label">Delivery Date:</span> ${formatDateToLocal(po["Delivery Date"])}</div>
                 <div class="po-type">
                     <span class="type-icon">${po["Type"] === "IQF" ? "❄️" : "📦"}</span>
                     <span class="type-text">${po["Type"]}</span>
@@ -352,6 +352,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => console.log('Email sent successfully:', data))
         .catch(error => console.error('Error sending email:', error));
     }
+        //local time date
+    function formatDateToLocal(dateString) {
+        const date = new Date(dateString);
+        const timezoneOffset = date.getTimezoneOffset() * 60000; // Get timezone offset in milliseconds
+        return new Date(date.getTime() + timezoneOffset).toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    }
+    
 
     // Run notification check on page load
     window.onload = function() {

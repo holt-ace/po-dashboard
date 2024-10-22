@@ -363,12 +363,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+        // Function to calculate average delivery time
+    function calculateAverageDeliveryTime() {
+        const deliveredPOs = poData.filter(po => po["Status"] === "DELIVERED");
+        if (deliveredPOs.length === 0) return "N/A";
+
+        const totalDays = deliveredPOs.reduce((sum, po) => {
+            const orderDate = new Date(po["Order Date"]);
+            const deliveryDate = new Date(po["Delivery Date"]);
+            return sum + ((deliveryDate - orderDate) / (1000 * 60 * 60 * 24));
+        }, 0);
+
+        return (totalDays / deliveredPOs.length).toFixed(2) + " days";
+    }
+
+    // Function to display average delivery time
+    function displayAverageDeliveryTime() {
+        const averageDeliveryTime = calculateAverageDeliveryTime();
+        const averageDeliveryTimeElement = document.getElementById('average-delivery-time');
+        averageDeliveryTimeElement.innerText = `Average Delivery Time: ${averageDeliveryTime}`;
+    }
+
 
     // Run notification check on page load
     window.onload = function() {
         displayPOs(poData);
         checkForDeliveryNotifications();
+        displayAverageDeliveryTime(); 
     }
+    
 
     // Attach Event Listeners
 

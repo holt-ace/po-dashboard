@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Buyer": "Geoffrey Potter",
         "Order Date": "2024-10-15",
         "Delivery Date": "2024-10-24",
-        "Status": "DELIVERED",
+        "Status": "TRANSIT",
         "Invoice": "",
         "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28234070.pdf"

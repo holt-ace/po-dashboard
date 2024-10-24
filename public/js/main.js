@@ -211,11 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 ];
 
-    let sortOrder = 'asc';
+    let sortOrder = 'desc';  // Set default to descending
+    let sortOption = 'deliveryDate';  // Default to sorting by Delivery Date
 
-    // Define all your functions (same as before)
     function sortPOs() {
-        const sortOption = document.getElementById('sort-options').value;
         poData.sort((a, b) => {
             let comparison = 0;
             if (sortOption === 'orderDate') {
@@ -235,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleSortOrder() {
         sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
         document.getElementById('sort-order').innerText = sortOrder === 'asc' ? 'Ascending' : 'Descending';
+        sortPOs();
     }
 
     function filterPOs() {
@@ -352,7 +352,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => console.log('Email sent successfully:', data))
         .catch(error => console.error('Error sending email:', error));
     }
-        //local time date
+
+    // Local time date format
     function formatDateToLocal(dateString) {
         const date = new Date(dateString);
         const timezoneOffset = date.getTimezoneOffset() * 60000; // Get timezone offset in milliseconds
@@ -362,8 +363,8 @@ document.addEventListener('DOMContentLoaded', function() {
             day: 'numeric' 
         });
     }
-    
-        // Function to calculate average delivery time
+
+    // Function to calculate average delivery time
     function calculateAverageDeliveryTime() {
         const deliveredPOs = poData.filter(po => po["Status"] === "DELIVERED");
         if (deliveredPOs.length === 0) return "N/A";
@@ -384,14 +385,15 @@ document.addEventListener('DOMContentLoaded', function() {
         averageDeliveryTimeElement.innerText = `${averageDeliveryTime}`;
     }
 
-
     // Run notification check on page load
     window.onload = function() {
+        sortPOs();  // Automatically sort by Delivery Date in descending order on page load
         displayPOs(poData);
         checkForDeliveryNotifications();
-        displayAverageDeliveryTime(); 
-    }
-    
+        displayAverageDeliveryTime();
+        document.getElementById('sort-order').innerText = 'Descending';  // Reflect default descending order
+        document.getElementById('sort-options').value = 'deliveryDate';  // Set default to Delivery Date
+    };
 
     // Attach Event Listeners
 
@@ -428,6 +430,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial Display and Notifications
     displayPOs(poData);
     checkForDeliveryNotifications();
-
-    console.log(poData);
 });

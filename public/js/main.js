@@ -204,10 +204,21 @@ document.addEventListener('DOMContentLoaded', function() {
         "Buyer": "Christina Lang",
         "Order Date": "2024-10-14",
         "Delivery Date": "2024-10-25",
-        "Status": "TRANSIT",
-        "Invoice": "",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_14517280.pdf"
+    },
+    {
+        "Purchase Order": "PO-44526400",
+        "Customer": "Sysco Los Angeles",
+        "Buyer": "Ricardo Amore",
+        "Order Date": "2024-10-25",
+        "Delivery Date": "2024-11-05",
+        "Status": "CONFIRMED",
+        "Invoice": "",
+        "Type": "Unknown",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44526400.pdf"
     }
 ];
 

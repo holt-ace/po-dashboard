@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-11-05",
         "Status": "CONFIRMED",
         "Invoice": "",
-        "Type": "Unknown",
+        "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44526400.pdf"
     }
 ];

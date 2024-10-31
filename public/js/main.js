@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Buyer": "Nichole Bonin",
         "Order Date": "2024-09-10",
         "Delivery Date": "2024-10-29",
-        "Status": "TRANSIT",
+        "Status": "DELIVERED",
         "Invoice": "",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27395370.pdf"

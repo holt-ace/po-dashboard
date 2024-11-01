@@ -230,6 +230,17 @@ document.addEventListener('DOMContentLoaded', function() {
         "Invoice": "",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30765210.pdf"
+    },
+    {
+        "Purchase Order": "PO-28322660",
+        "Customer": "Sysco Arizona",
+        "Buyer": "Geoffrey Potter",
+        "Order Date": "2024-10-31",
+        "Delivery Date": "2024-11-18",
+        "Status": "CONFIRMED",
+        "Invoice": "",
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28322660.pdf"
     }
 ];
 

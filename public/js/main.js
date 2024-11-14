@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30765210.pdf"
     },
     {
-        "Purchase Order": "PO-27405230",
+        "Purchase Order": "PO-27505230",
         "Customer": "Sysco Houston",
         "Buyer": "Nadia Navarro",
         "Order Date": "2024-11-11",
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Status": "CONFIRMED",
         "Invoice": "",
         "Type": "SHELF STABLE",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27405230.pdf"
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27505230.pdf"
     }
 ];
 

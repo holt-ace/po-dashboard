@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Order Date": "2024-10-14",
         "Delivery Date": "2024-10-23",
         "Status": "DELIVERED",
-        "Invoice": "SENT",
+        "Invoice": "PAID",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30721790.pdf"
     },
@@ -226,8 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "Buyer": "Geoffrey Potter",
         "Order Date": "2024-10-31",
         "Delivery Date": "2024-11-15",
-        "Status": "CONFIRMED",
-        "Invoice": "",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28322660.pdf"
     },

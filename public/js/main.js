@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "Buyer": "Ricardo Amore",
         "Order Date": "2024-10-18",
         "Delivery Date": "2024-11-20",
-        "Status": "CONFIRMED",
-        "Invoice": "",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44502160.pdf"
     },

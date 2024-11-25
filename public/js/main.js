@@ -1,37 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const poData = [
     {
-        "Purchase Order": "PO-29587710",
-        "Customer": "Sysco Chicago",
-        "Buyer": "Aaron Reichow",
-        "Order Date": "2024-08-29",
-        "Delivery Date": "2024-09-09",
+        "Purchase Order": "PO-10243890",
+        "Customer": "Sysco Riverside",
+        "Buyer": "Geoffrey Potter",
+        "Order Date": "2024-09-13",
+        "Delivery Date": "2024-09-26",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1009",
         "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
-    },
-    {
-        "Purchase Order": "PO-59406120",
-        "Customer": "Sysco Nashville",
-        "Buyer": "Crystal Ferguson",
-        "Order Date": "2024-08-30",
-        "Delivery Date": "2024-09-10",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
-    },
-    {
-        "Purchase Order": "PO-28069770",
-        "Customer": "Sysco Denver",
-        "Buyer": "Celina Dowling",
-        "Order Date": "2024-09-03",
-        "Delivery Date": "2024-09-16",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"
     },
     {
         "Purchase Order": "PO-27286940",
@@ -41,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1008",
         "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27286940.pdf"
     },
@@ -52,63 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-09-17",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1007",
         "Type": "IQF",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27378750.pdf"
     },
     {
-        "Purchase Order": "PO-38215570",
-        "Customer": "Sysco North Texas",
-        "Buyer": "Nichole Bonin",
+        "Purchase Order": "PO-28069770",
+        "Customer": "Sysco Denver",
+        "Buyer": "Celina Dowling",
         "Order Date": "2024-09-03",
-        "Delivery Date": "2024-09-17",
+        "Delivery Date": "2024-09-16",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1006",
         "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
-    },
-    {
-        "Purchase Order": "PO-10243890",
-        "Customer": "Sysco Riverside",
-        "Buyer": "Geoffrey Potter",
-        "Order Date": "2024-09-13",
-        "Delivery Date": "2024-09-26",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10243890.pdf"
-    },
-    {
-        "Purchase Order": "PO-38240150",
-        "Customer": "Sysco North Texas",
-        "Buyer": "Nichole Bonin",
-        "Order Date": "2024-09-09",
-        "Delivery Date": "2024-09-26",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38240150.pdf"
-    },
-    {
-        "Purchase Order": "PO-29592910",
-        "Customer": "Sysco Chicago",
-        "Buyer": "Aaron Reichow",
-        "Order Date": "2024-09-23",
-        "Delivery Date": "2024-10-16",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "SHELF STABLE",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29592910.pdf"
-    },
-    {
-        "Purchase Order": "PO-38331580",
-        "Customer": "Sysco North Texas",
-        "Buyer": "Nichole Bonin",
-        "Order Date": "2024-10-01",
-        "Delivery Date": "2024-10-17",
-        "Status": "DELIVERED",
-        "Invoice": "PAID",
-        "Type": "SHELF STABLE",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38331580.pdf"
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28069770.pdf"
     },
     {
         "Purchase Order": "PO-28142160",
@@ -118,41 +56,33 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-10-21",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1013",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28142160.pdf"
     },
     {
-        "Purchase Order": "PO-10269630",
-        "Customer": "Sysco Riverside",
-        "Buyer": "Geoffrey Potter",
-        "Order Date": "2024-10-14",
-        "Delivery Date": "2024-10-23",
+        "Purchase Order": "PO-29587710",
+        "Customer": "Sysco Chicago",
+        "Buyer": "Aaron Reichow",
+        "Order Date": "2024-08-29",
+        "Delivery Date": "2024-09-09",
         "Status": "DELIVERED",
-        "Invoice": "SENT",
+        "Invoice": "PAID",
+        "Invoice #": "#1003",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29587710.pdf"
+    },
+    {
+        "Purchase Order": "PO-29592910",
+        "Customer": "Sysco Chicago",
+        "Buyer": "Aaron Reichow",
+        "Order Date": "2024-09-23",
+        "Delivery Date": "2024-10-16",
+        "Status": "DELIVERED",
+        "Invoice": "PAID",
+        "Invoice #": "#1012",
         "Type": "SHELF STABLE",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10269630.pdf"
-    },
-    {
-        "Purchase Order": "PO-28234070",
-        "Customer": "Sysco Arizona",
-        "Buyer": "Geoffrey Potter",
-        "Order Date": "2024-10-15",
-        "Delivery Date": "2024-10-23",
-        "Status": "DELIVERED",
-        "Invoice": "SENT",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28234070.pdf"
-    },
-    {
-        "Purchase Order": "PO-30708300",
-        "Customer": "Sysco San Francisco",
-        "Buyer": "Kinsey Collins",
-        "Order Date": "2024-10-14",
-        "Delivery Date": "2024-10-23",
-        "Status": "DELIVERED",
-        "Invoice": "SENT",
-        "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30708300.pdf"
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_29592910.pdf"
     },
     {
         "Purchase Order": "PO-30721790",
@@ -162,8 +92,69 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-10-23",
         "Status": "DELIVERED",
         "Invoice": "PAID",
+        "Invoice #": "#1015",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30721790.pdf"
+    },
+    {
+        "Purchase Order": "PO-38215570",
+        "Customer": "Sysco North Texas",
+        "Buyer": "Nichole Bonin",
+        "Order Date": "2024-09-03",
+        "Delivery Date": "2024-09-17",
+        "Status": "DELIVERED",
+        "Invoice": "PAID",
+        "Invoice #": "#1005",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38215570.pdf"
+    },
+    {
+        "Purchase Order": "PO-38240150",
+        "Customer": "Sysco North Texas",
+        "Buyer": "Nichole Bonin",
+        "Order Date": "2024-09-09",
+        "Delivery Date": "2024-09-26",
+        "Status": "DELIVERED",
+        "Invoice": "PAID",
+        "Invoice #": "#1010",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38240150.pdf"
+    },
+    {
+        "Purchase Order": "PO-38331580",
+        "Customer": "Sysco North Texas",
+        "Buyer": "Nichole Bonin",
+        "Order Date": "2024-10-01",
+        "Delivery Date": "2024-10-17",
+        "Status": "DELIVERED",
+        "Invoice": "PAID",
+        "Invoice #": "#1011",
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_38331580.pdf"
+    },
+    {
+        "Purchase Order": "PO-59406120",
+        "Customer": "Sysco Nashville",
+        "Buyer": "Crystal Ferguson",
+        "Order Date": "2024-08-30",
+        "Delivery Date": "2024-09-10",
+        "Status": "DELIVERED",
+        "Invoice": "PAID",
+        "Invoice #": "#1004",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_59406120.pdf"
+    },
+    {
+        "Purchase Order": "PO-10269630",
+        "Customer": "Sysco Riverside",
+        "Buyer": "Geoffrey Potter",
+        "Order Date": "2024-10-14",
+        "Delivery Date": "2024-10-23",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
+        "Invoice #": "#1016",
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_10269630.pdf"
     },
     {
         "Purchase Order": "PO-14517280",
@@ -173,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-10-25",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "#1018",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_14517280.pdf"
     },
@@ -184,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-10-28",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "#1019",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27312200.pdf"
     },
@@ -195,30 +188,21 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-10-29",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "#1020",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27395370.pdf"
     },
     {
-        "Purchase Order": "PO-44526400",
-        "Customer": "Sysco Los Angeles",
-        "Buyer": "Ricardo Amore",
-        "Order Date": "2024-10-25",
-        "Delivery Date": "2024-11-05",
+        "Purchase Order": "PO-28234070",
+        "Customer": "Sysco Arizona",
+        "Buyer": "Geoffrey Potter",
+        "Order Date": "2024-10-15",
+        "Delivery Date": "2024-10-23",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "#1017",
         "Type": "IQF",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44526400.pdf"
-    },
-    {
-        "Purchase Order": "PO-44502160",
-        "Customer": "Sysco Los Angeles",
-        "Buyer": "Ricardo Amore",
-        "Order Date": "2024-10-18",
-        "Delivery Date": "2024-11-20",
-        "Status": "DELIVERED",
-        "Invoice": "SENT",
-        "Type": "SHELF STABLE",
-        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44502160.pdf"
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28234070.pdf"
     },
     {
         "Purchase Order": "PO-28322660",
@@ -228,8 +212,21 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-11-15",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "#1022",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_28322660.pdf"
+    },
+    {
+        "Purchase Order": "PO-30708300",
+        "Customer": "Sysco San Francisco",
+        "Buyer": "Kinsey Collins",
+        "Order Date": "2024-10-14",
+        "Delivery Date": "2024-10-23",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
+        "Invoice #": "#1014",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30708300.pdf"
     },
     {
         "Purchase Order": "PO-30765210",
@@ -239,8 +236,33 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-11-19",
         "Status": "DELIVERED",
         "Invoice": "SENT",
+        "Invoice #": "",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30765210.pdf"
+    },
+    {
+        "Purchase Order": "PO-44502160",
+        "Customer": "Sysco Los Angeles",
+        "Buyer": "Ricardo Amore",
+        "Order Date": "2024-10-18",
+        "Delivery Date": "2024-11-20",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
+        "Invoice #": "#1024",
+        "Type": "SHELF STABLE",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44502160.pdf"
+    },
+    {
+        "Purchase Order": "PO-44526400",
+        "Customer": "Sysco Los Angeles",
+        "Buyer": "Ricardo Amore",
+        "Order Date": "2024-10-25",
+        "Delivery Date": "2024-11-05",
+        "Status": "DELIVERED",
+        "Invoice": "SENT",
+        "Invoice #": "#1021",
+        "Type": "IQF",
+        "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44526400.pdf"
     },
     {
         "Purchase Order": "PO-27505230",
@@ -250,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-11-29",
         "Status": "CONFIRMED",
         "Invoice": "",
+        "Invoice #": "",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27505230.pdf"
     }
@@ -324,16 +347,16 @@ document.addEventListener('DOMContentLoaded', function() {
         confirmedContent.innerHTML = '';
         transitContent.innerHTML = '';
         deliveredContent.innerHTML = '';
-
+    
         poData.forEach(po => {
             const poCard = document.createElement('div');
             poCard.className = 'po-card';
             poCard.onclick = () => window.open(po.pdf, '_blank');
-
+    
             const poHeader = document.createElement('div');
             poHeader.className = 'po-header';
             poHeader.innerHTML = `<strong>${po["Customer"]}</strong><br><span>${po["Purchase Order"]}</span>`;
-
+    
             const poDetails = document.createElement('div');
             poDetails.className = 'po-details';
             poDetails.innerHTML = `
@@ -345,20 +368,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="type-text">${po["Type"]}</span>
                 </div>
             `;
-
+    
             const poStatus = document.createElement('div');
             poStatus.className = `po-status ${po["Status"]}`;
             poStatus.innerText = po["Status"];
-
+    
+            // Add the invoice with Invoice # if available
             const poInvoice = document.createElement('div');
             poInvoice.className = `po-invoice ${po["Invoice"]}`;
-            poInvoice.innerText = po["Invoice"] ? `Invoice: ${po["Invoice"]}` : '';
-
+            poInvoice.innerHTML = po["Invoice"]
+                ? `Invoice: ${po["Invoice"]}${po["Invoice #"] ? ` (${po["Invoice #"]})` : ''}`
+                : '';
+    
             poCard.appendChild(poHeader);
             poCard.appendChild(poDetails);
             poCard.appendChild(poStatus);
             if (po["Invoice"]) poCard.appendChild(poInvoice);
-
+    
             if (po["Status"] === 'CONFIRMED') {
                 confirmedContent.appendChild(poCard);
             } else if (po["Status"] === 'TRANSIT') {
@@ -367,7 +393,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 deliveredContent.appendChild(poCard);
             }
         });
-    }
+    }    
+    
 
     // Notification Functionality
     function checkForDeliveryNotifications() {

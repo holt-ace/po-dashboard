@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Order Date": "2024-10-18",
         "Delivery Date": "2024-11-20",
         "Status": "DELIVERED",
-        "Invoice": "SENT",
+        "Invoice": "PAID",
         "Invoice #": "#1024",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_44502160.pdf"
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Delivery Date": "2024-11-19",
         "Status": "DELIVERED",
         "Invoice": "SENT",
-        "Invoice #": "",
+        "Invoice #": "#1023",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_30765210.pdf"
     },
@@ -271,8 +271,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "Order Date": "2024-11-11",
         "Delivery Date": "2024-11-29",
         "Status": "CONFIRMED",
-        "Invoice": "",
-        "Invoice #": "",
+        "Invoice": "SENT",
+        "Invoice #": "#1025",
         "Type": "SHELF STABLE",
         "pdf": "https://github.com/holt-ace/po-dashboard/blob/master/Sysco%20_PO_Confirmation/PO_27505230.pdf"
     }
